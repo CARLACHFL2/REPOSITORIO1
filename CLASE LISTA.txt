@@ -1,0 +1,144 @@
+public class Lista {
+  private Cancion vec[];
+  private int tam;
+  private int can;
+  private String titu_buscar;
+  private double total_dur;
+
+  //constructor
+  public Lista(int n){
+	  this.tam=n;
+	  this.vec=new Cancion[tam];
+	  this.can=0;
+  }
+  
+//METODO CREAR LISTA
+ 
+  
+public int getCan() {
+	return can;
+}
+
+
+
+public Cancion[] getVec() {
+	return vec;
+}
+
+public boolean agregar(Cancion n){
+	  
+	  if(can<tam){
+         this.vec[can++]=n;
+         
+     return true;
+	  }
+	  return false;	     
+	  }
+  public String consu_duracion(String titu){
+	  this.titu_buscar = titu;
+	  for(int i=0;i<can;i++){
+		  if(vec[i].getTitulo().equalsIgnoreCase(titu_buscar)){
+			  return this.vec[i].getDuracion();
+		  }
+	  }
+	  return "-1";
+  }
+	  
+  //METODO  QUE NOS MUESTRA LA LISTA COMPLETA
+  public String toString(){
+	  String s="";
+	  for(int i=0;i<can;i++){
+		  s+=vec[i].toString();
+	  }return s;
+  }
+  //METODOS DE ELIMINACION
+  public boolean eliminarXart(String artis){
+	  for(int i=0;i<can;i++){
+		  if(vec[i].getArtista().equalsIgnoreCase(artis)){
+			  correIzq(i);
+			  return true;
+		  }
+	  }return false;
+  }
+  public boolean eliminarXalb(String albu){
+	  for(int i=0;i<can;i++){
+		  if(vec[i].getAlbum().equalsIgnoreCase(albu)){
+			  correIzq(i);
+			  return true;
+		  }
+	  }return false;
+  }
+  public boolean eliminarXdur(String dur){
+	  for(int i=0;i<can;i++){
+		  if(vec[i].getDuracion().equalsIgnoreCase(dur)){
+			  correIzq(i);
+			  return true;
+		  }
+	  }return false;
+  }
+  public boolean eliminarXtit(String titulo){
+	  for(int i=0;i<can;i++){
+		  if(vec[i].getTitulo().equalsIgnoreCase(titulo)){
+			  correIzq(i);
+			  return true;
+		  }
+	  }return false;
+  }
+  private void correIzq(int x){
+	  for(int i=x;i<can;i++){
+		  vec[i]=vec[i+1];
+	  }
+	  can--;
+  }
+  //METODO DURACION DE TODA LA LISTA
+ public double duracionl(){
+	 for(int i=0;i<can;i++){
+		 this.total_dur+= Double.parseDouble(vec[i].getDuracion()) ;
+	 }
+	 return this.total_dur;
+ }
+
+
+ //METODO ORDENAMIENTO
+ public void OrdenaT(){
+		for(int i=0;i<can;i++){
+			for(int j=0;j<can;j++){
+				if(vec[i].getTitulo().compareToIgnoreCase(vec[j].getTitulo())<0){
+					Cancion aux=vec[i];
+					vec[i]=vec[j];
+					vec[j]=aux;
+				}}
+			}
+	
+		}
+ public void ord_duraciondeMEaMA(){
+	 for(int i=0;i<can;i++){
+			for(int j=0;j<can;j++){
+				if(vec[i].getDuracion().compareTo(vec[j].getDuracion())<0){
+					Cancion aux=vec[i];
+					vec[i]=vec[j];
+					vec[j]=aux;
+				}}
+			}
+	
+ }
+ 
+ public void ordenarXAR(){
+	 for(int i=0;i<can;i++){
+			for(int j=0;j<can;j++){
+				if(vec[i].getArtista().compareTo(vec[j].getArtista())<0){
+					Cancion aux=vec[i];
+					vec[i]=vec[j];
+					vec[j]=aux;
+				}}
+			}
+	
+ }
+
+	public void mostrar(){
+		for(Cancion T : vec){
+			System.out.println(T);
+		}
+	}
+	
+}

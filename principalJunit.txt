@@ -1,0 +1,47 @@
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+
+public class playlist_test{	 
+	 Cancion C=new Cancion("intento","4.3");
+	 Principal P=new Principal();
+	 //Cancion V=new Cancion("tren del cielo","sol","soledad","3.65");
+	
+	 @Before
+	public void setUp() throws Exception {
+		
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
+
+	@Test
+	public void agregartest() {
+      Lista li =new Lista(3);
+   
+      li.agregar(C);
+     
+      String esperado=C.toString();
+	  String actual=li.toString();
+	    assertEquals(esperado, actual);	
+	}
+	@Test
+	public void colsutarduraciontest(){
+	   Lista li=new Lista(4);
+	   li.agregar(C);
+	   String esperado=C.getDuracion();
+	   String actual= li.consu_duracion("intento");
+ 	   assertEquals (esperado,actual);
+	}
+	@Test 
+	public void toStringtest(){
+		Cancion g=new Cancion("disfruto","albun","5,66");
+		Lista li=new Lista(3);
+		
+		li.agregar(g);
+		String esperado= g.toString();
+		String actual=li.toString();

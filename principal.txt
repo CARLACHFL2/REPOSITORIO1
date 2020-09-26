@@ -1,0 +1,121 @@
+
+import java.util.Scanner;
+public class Principal {
+
+	public static void main(String[]arg){
+		Scanner S = new Scanner(System.in);
+		int x;
+		final int NUMERO =20;
+		//INSTANCION UN OBJETO DE LA CLASE LISTA INDICANDO SU TAMAÑO
+		Lista L =new Lista(NUMERO);
+		
+		do{
+			System.out.println("MENU\n______________\n1_AGREGAR CANCION\n2_VER LISTA\n3_CONSULTAR DURACION\n"
+		   + "4_ELIMINAR CANCION\n5_DURACION DE LA PLAYLIST\n6_CANTIDAD DE CANCIONES\n"
+		   + "7_ORDENAR PLAYLIST POR TITULO DE MANERA ALFABETICA\n8_CANCION DE MAYOR Y MENOR DURACION\n"
+		   + "9_ORDENAR ALFABETICAMENTE SEGUN ARTISTAS\n10_SALIR");
+			x=S.nextInt();
+			switch(x){
+			case 1: agregarCan(L);break;
+			case 2: mostrarlista(L); break;
+			case 3: consultarduracion(L); break;
+			case 4:
+				System.out.println("borrar segun: 1_titulo  2_album  3_artista 4_duracion");
+				int z = S.nextInt();
+				eliminarcancion(L,z);break;
+			case 5: duracionLIST(L);
+				break;
+			case 6: cantidadCAN(L); break;
+			case 7: ordenartitu(L);
+				break;
+			case 8:canciondeMaM(L);break;
+			case 9: ordenarXart(L);break;
+			case 10: break;
+			default:
+			}
+			
+		}while(x!=9);
+      S.close();
+	}
+	
+	public static void agregarCan(Lista L){
+        
+		Cancion c=new Cancion("aun estas en mis sueños","4.50");
+		Cancion c1 = new Cancion("smell like teen spirit","album 3","nirvana","4.34");
+	 	Cancion can2 = new Cancion("titanium","album 1","6.50");
+		Cancion can3= new Cancion("int the end","5.23");	  	 
+
+		L.agregar(c1);
+		L.agregar(can2);
+		L.agregar(can3);
+		L.agregar(c);
+		}
+	public static void mostrarlista(Lista L){
+		System.out.println(L.toString());
+	}
+
+	public static void eliminarcancion(Lista L,int z){
+		switch(z){
+		case 1:
+			if(L.eliminarXtit("int the end")){
+				System.out.println("eliminado");
+				
+			}else {
+				System.out.println("NO se elimino");
+			}break;
+		case 2:
+			if(L.eliminarXalb("ALBUM 1")){
+				System.out.println("eliminado");
+				
+			}else {
+				System.out.println("NO se elimino");
+			}break;
+		case 3:
+			if(L.eliminarXart("nirvana")){
+				System.out.println("eliminado");
+				
+			}else {
+				System.out.println("NO se elimino");
+			}break;
+		case 4:
+			if(L.eliminarXdur("4.50")){
+				System.out.println("eliminado");
+				
+			}else {
+				System.out.println("NO se elimino");
+			}break;
+		}
+		
+	}
+	//METODO DE DURACION
+	public static void consultarduracion(Lista L){
+		//INDIQUE EL TITULO DE LA CANCION
+		System.out.println(L.consu_duracion("maluma 4 babys"));
+	}
+	
+	 public static void duracionLIST(Lista L){
+		     System.out.println( "La PLAYLIST dura: "+L.duracionl()+" minutos");
+	 }
+	 //METODO CANTIDAD DE CANCIONES
+	 public static void cantidadCAN(Lista L){
+       System.out.println("La PLASLIST tiene "+L.getCan()+" de canciones");		 
+	 
+
+	 }
+	 public static void ordenartitu(Lista L){
+		 
+	        L.OrdenaT();
+	        L.mostrar();
+			//return L.toString();
+	 }
+	 public static void canciondeMaM(Lista L){
+		  L.ord_duraciondeMEaMA();
+		  L.mostrar();
+	 }
+	 public static void ordenarXart(Lista L){
+		 L.ordenarXAR();
+		 L.mostrar();
+	 }
+	 
+ 	
+}
